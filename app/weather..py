@@ -17,6 +17,11 @@ root.title("Weather App")
 root.geometry("900x500+300+200")
 root.resizable(False, False)
 
+image_1 = "images/search.png"
+image_2 = "images/search_icon.png"
+image_3 = "images/logo.png"
+image_4 = "images/box.png"
+
 
 def getWeather():
     city = textfield.get()
@@ -40,6 +45,7 @@ def getWeather():
     # Weather
     api = f"https://api.openweathermap.org/data/2.5/weather?lat={location.latitude}&lon={location.longitude}&appid={settings.open_weather_map_api_key}"
     json_data = requests.get(api).json()
+
     condition = json_data["weather"][0]["main"]
     description = json_data["weather"][0]["description"]
     temp = int(json_data["main"]["temp"] - 273.15)
@@ -57,7 +63,7 @@ def getWeather():
 
 
 # Search box
-search_image = PhotoImage(file="загружено.png")
+search_image = PhotoImage(file=image_1)
 myimage = Label(image=search_image)
 myimage.place(x=20, y=20)
 
@@ -73,19 +79,19 @@ textfield = tk.Entry(
 textfield.place(x=50, y=40)
 textfield.focus()
 
-search_icon = PhotoImage(file="search_i.png")
+search_icon = PhotoImage(file=image_2)
 myimage_icon = Button(
     image=search_icon, borderwidth=0, cursor="hand2", bg="#404040", command=getWeather
 )
 myimage_icon.place(x=400, y=34)
 
 # Logo
-logo_image = PhotoImage(file="cloudy.png")
+logo_image = PhotoImage(file=image_3)
 logo = Label(image=logo_image)
 logo.place(x=150, y=100)
 
 # Bottom box
-frame_image = PhotoImage(file="searching-bar.png")
+frame_image = PhotoImage(file=image_4)
 frame_myimage = Label(image=frame_image)
 frame_myimage.pack(padx=5, pady=5, side=BOTTOM)
 
